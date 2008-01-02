@@ -14,6 +14,7 @@ Patch0:		lua-config.patch
 Patch1:		lua-lbaselib.patch
 Patch2:		lua-default.patch
 Patch3:		lua-soname.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # Provides:	lua = %{version}-%{release}
 
 %description
