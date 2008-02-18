@@ -2,7 +2,7 @@
 %define	libname %mklibname lua %{major}
 %define alt_priority %(echo %{major} | sed -e 's/[^0-9]//g')
 
-Summary:	Lua is a powerful, light-weight programming language
+Summary:	Powerful, light-weight programming language
 Name:		lua5.0
 Version:	5.0.3
 Release:	%mkrel 4
@@ -29,7 +29,7 @@ ANSI C, and compiles unmodified in all known platforms. The implementation
 goals are simplicity, efficiency, portability, and low embedding cost.
 
 %package -n	%{libname}
-Summary:	Lua is a powerful, light-weight programming language
+Summary:	Powerful, light-weight programming language
 Group:		System/Libraries
 
 %description -n	%{libname}
@@ -47,7 +47,7 @@ This package includes the libraries.
 
 
 %package -n	%{libname}-devel
-Summary:	Lua is a powerful, light-weight programming language
+Summary:	Powerful, light-weight programming language
 Group:		Development/Other
 Requires:	%{libname} = %{version}
 # to have the same provides on all arches
@@ -74,7 +74,7 @@ This package contains the headers and development files for lua.
 
 
 %package -n	%{libname}-devel-static
-Summary:	Lua is a powerful, light-weight programming language
+Summary:	Powerful, light-weight programming language
 Group:		Development/Other
 Requires:	%{libname}-devel = %{version}
 # to have the same provides on all arches
