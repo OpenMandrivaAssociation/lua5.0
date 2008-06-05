@@ -5,7 +5,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua5.0
 Version:	5.0.3
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	MIT
 URL:		http://www.lua.org/
 Group:		Development/Other
@@ -51,13 +51,9 @@ Summary:	Powerful, light-weight programming language
 Group:		Development/Other
 Requires:	%{libname} = %{version}
 # to have the same provides on all arches
-Provides:	lua-devel = %{version}-%{release}
 Provides:	lua%{major}-devel = %{version}-%{release}
-# for backward compat
-Provides:	liblua-devel = %{version}-%{release}
 # conflict with other versions
-Conflicts:	lua-devel < %{version}
-Conflicts:	lua-devel > %{version}
+Conflicts:	lua-devel
 
 %description -n	%{libname}-devel
 Lua is a programming language originally designed for extending applications,
@@ -78,11 +74,9 @@ Summary:	Powerful, light-weight programming language
 Group:		Development/Other
 Requires:	%{libname}-devel = %{version}
 # to have the same provides on all arches
-Provides:	lua-devel-static = %{version}-%{release}
 Provides:	lua%{major}-devel-static = %{version}-%{release}
 # conflict with other versions
-Conflicts:	lua-devel-static < %{version}
-Conflicts:	lua-devel-static > %{version}
+Conflicts:	lua-devel-static
 
 %description -n	%{libname}-devel-static
 Lua is a programming language originally designed for extending applications,
