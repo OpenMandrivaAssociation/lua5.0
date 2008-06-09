@@ -133,14 +133,12 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/sbin/update-alternatives --install %{_bindir}/lua lua %{_bindir}/lua%{major} %{alt_priority} --slave %{_bindir}/luac luac %{_bindir}/luac%{major}
 
-%post -n %{libname}
-/sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
 %postun
 [[ -f %_bindir/lua%{major} ]] || /usr/sbin/update-alternatives --remove lua %{_bindir}/lua%{major}
 
-%postun -n %{libname}
-/sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 %files
 %defattr (-,root,root)
