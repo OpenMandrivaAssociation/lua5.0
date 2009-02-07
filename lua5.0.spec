@@ -5,7 +5,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua5.0
 Version:	5.0.3
-Release:	%mkrel 7
+Release:	%mkrel 8
 License:	MIT
 URL:		http://www.lua.org/
 Group:		Development/Other
@@ -105,7 +105,7 @@ This package contains the headers and development files for lua.
 %ifarch x86_64
 fpic="-fPIC"
 %endif
-%make MYCFLAGS="$RPM_OPT_FLAGS ${fpic}"
+%make MYCFLAGS="$RPM_OPT_FLAGS ${fpic}" MYLDFLAGS="%{?ldflags}"
 make so
 
 %install
