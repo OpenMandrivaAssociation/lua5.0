@@ -5,7 +5,7 @@
 Summary:	Powerful, light-weight programming language
 Name:		lua5.0
 Version:	5.0.3
-Release:	%mkrel 9
+Release:	%mkrel 10
 License:	MIT
 URL:		http://www.lua.org/
 Group:		Development/Other
