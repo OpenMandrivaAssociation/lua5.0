@@ -1,0 +1,11 @@
+--- lua-5.0.2.orig/src/lib/lbaselib.c	2004-03-03 21:45:13.000000000 -0300
++++ lua-5.0.2/src/lib/lbaselib.c	2004-04-22 11:54:04.000000000 -0300
+@@ -409,7 +409,7 @@
+ #endif
+ 
+ #ifndef LUA_PATH_DEFAULT
+-#define LUA_PATH_DEFAULT	"?;?.lua"
++#define LUA_PATH_DEFAULT	"?;?.lua;/usr/share/lua/5.0/?.lua"
+ #endif
+ 
+ 

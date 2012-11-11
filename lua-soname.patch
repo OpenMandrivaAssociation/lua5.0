@@ -1,0 +1,13 @@
+--- Makefile.soname	2004-03-12 02:50:55.000000000 +0100
++++ Makefile	2009-02-07 18:34:53.000000000 +0100
+@@ -38,8 +38,8 @@
+ 
+ # shared libraries (for Linux)
+ so:
+-	ld -o lib/liblua.so.$V -shared src/*.o
+-	ld -o lib/liblualib.so.$V -shared src/lib/*.o
++	ld -o lib/liblua.so.$V -shared -soname="liblua.so.$V" src/*.o -lc
++	ld -o lib/liblualib.so.$V -shared -soname="liblualib.so.$V" src/lib/*.o -Llib -llua -ldl -lm
+ 	cd lib; ln -fs liblua.so.$V liblua.so; ln -fs liblualib.so.$V liblualib.so
+ 
+ # binaries using shared libraries
