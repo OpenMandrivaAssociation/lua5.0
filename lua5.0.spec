@@ -14,7 +14,6 @@ Patch0:		lua-config.patch
 Patch1:		lua-lbaselib.patch
 Patch2:		lua-default.patch
 Patch3:		lua-soname.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # Provides:	lua = %{version}-%{release}
 
 %description
@@ -109,43 +108,27 @@ fpic="-fPIC"
 make so
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %makeinstall_std INSTALL_LIB=%buildroot%_libdir
-install -d $RPM_BUILD_ROOT%{_libdir}/lua/%{major}/
-install -d $RPM_BUILD_ROOT%{_datadir}/lua/%{major}/
-install -m 755 lib/*.so.* $RPM_BUILD_ROOT%{_libdir}/
-cp -a lib/*.so $RPM_BUILD_ROOT%{_libdir}/
-install -m 644 lib/*.lua $RPM_BUILD_ROOT%{_datadir}/lua/%{major}/
+install -d %{buildroot}%{_libdir}/lua/%{major}/
+install -d %{buildroot}%{_datadir}/lua/%{major}/
+install -m 755 lib/*.so.* %{buildroot}%{_libdir}/
+cp -a lib/*.so %{buildroot}%{_libdir}/
+install -m 644 lib/*.lua %{buildroot}%{_datadir}/lua/%{major}/
 
 # for update-alternatives
-mv $RPM_BUILD_ROOT/%{_bindir}/lua $RPM_BUILD_ROOT/%{_bindir}/lua%{major}
-mv $RPM_BUILD_ROOT/%{_bindir}/luac $RPM_BUILD_ROOT/%{_bindir}/luac%{major}
+mv %{buildroot}/%{_bindir}/lua %{buildroot}/%{_bindir}/lua%{major}
+mv %{buildroot}/%{_bindir}/luac %{buildroot}/%{_bindir}/luac%{major}
 
 # to avoid conflict with other versions
-mv $RPM_BUILD_ROOT/%{_mandir}/man1/lua.1 $RPM_BUILD_ROOT/%{_mandir}/man1/lua%{major}.1
-mv $RPM_BUILD_ROOT/%{_mandir}/man1/luac.1 $RPM_BUILD_ROOT/%{_mandir}/man1/luac%{major}.1
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
+mv %{buildroot}/%{_mandir}/man1/lua.1 %{buildroot}/%{_mandir}/man1/lua%{major}.1
+mv %{buildroot}/%{_mandir}/man1/luac.1 %{buildroot}/%{_mandir}/man1/luac%{major}.1
 
 %post
 /usr/sbin/update-alternatives --install %{_bindir}/lua lua %{_bindir}/lua%{major} %{alt_priority} --slave %{_bindir}/luac luac %{_bindir}/luac%{major}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%postun
-[[ -f %_bindir/lua%{major} ]] || /usr/sbin/update-alternatives --remove lua %{_bindir}/lua%{major}
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files
-%defattr (-,root,root)
 %doc COPYRIGHT HISTORY INSTALL MANIFEST README
 %doc doc/*.html doc/*.gif
 %{_bindir}/*
@@ -155,16 +138,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %files -n %{libname}
-%defattr (-,root,root)
 %{_libdir}/*.so.*
 
 %files -n %{libname}-devel
-%defattr (-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.a
 
 %files -n %{libname}-devel-static
-%defattr (-,root,root)
 %{_libdir}/*.a
-
