@@ -7,7 +7,7 @@ Name:		lua5.0
 Version:	5.0.3
 Release:	11
 License:	MIT
-URL:		http://www.lua.org/
+URL:		https://www.lua.org/
 Group:		Development/Other
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.bz2
 Patch0:		lua-config.patch
