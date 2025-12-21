@@ -16,6 +16,7 @@ Patch2:		lua-default.patch
 Patch3:		lua-soname.patch
 # Provides:	lua = %{version}-%{release}
 
+BuildRequires:	make
 %description
 Lua is a programming language originally designed for extending applications, 
 but also frequently used as a general-purpose, stand-alone language. Lua
